@@ -47,7 +47,7 @@ export default {
       let qrcode = new QRcode('qrcode', {
         width: 300,
         height: 300, // 高度
-        text: 'http://kuaidianhuan.llyzf.cn:80//lly-posp-proxy/payView.app?m=' + vm.code // 二维码内容
+        text: 'http://chuangyijinfu.llyzf.cn:80//lly-posp-proxy/payView.app?m=' + vm.code // 二维码内容
       })
       console.log(qrcode)
     }

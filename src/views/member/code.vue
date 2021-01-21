@@ -48,7 +48,7 @@ export default {
   methods: {
     qrcode () {
       let vm = this
-      let text = (this.$route.query.logo === 'ZFBSM' || this.$route.query.logo === 'WXSM') ? vm.shopingPayView ? 'http://kuaidianhuan.llyzf.cn:80/lly-posp-proxy/shopingPayView.app?m=' + vm.code : 'http://kuaidianhuan.llyzf.cn:80/lly-posp-proxy/payView.app?m=' + vm.code : vm.code
+      let text = (this.$route.query.logo === 'ZFBSM' || this.$route.query.logo === 'WXSM') ? vm.shopingPayView ? 'http://chuangyijinfu.llyzf.cn:80/lly-posp-proxy/shopingPayView.app?m=' + vm.code : 'http://chuangyijinfu.llyzf.cn:80/lly-posp-proxy/payView.app?m=' + vm.code : vm.code
       console.log(text)
       let qrcode = new QRcode('qrcode', {
         width: 300,
