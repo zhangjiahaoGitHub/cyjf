@@ -217,6 +217,7 @@ export default {
       addout: 0,
       newem: 0,
       lazyPeople: false,
+      jshk: false,
       loading: false,
       multi: false,
       pickerOptions: {
@@ -236,12 +237,16 @@ export default {
         this.cardList = JSON.parse(this.$route.query.item)
       }
       this.lazyPeople = this.$route.query.lazyPeople
+      this.jshk = this.$route.query.jshk
       this.checkList = this.$route.query.checkList
       this.merchantNo = JSON.parse(this.$stact.state.token)[0].merchantNo
       this.usermerchantNo = ''
       this.usermerchantNo = this.$route.query.merchantNo
       this.multi = this.$route.query.multi
-      this.tong !== 'QYK' ? this.options = [{ value: '1', label: '每日还款1笔' }, { value: '2', label: '每日还款2笔' }, { value: '3', label: '每日还款3笔' }] : this.options = [{ value: '1', label: '每日还款1笔' }, { value: '2', label: '每日还款2笔' }, { value: '3', label: '每日还款3笔' }, { value: '4', label: '每日还款4笔' }, { value: '5', label: '每日还款5笔' }]
+      this.tong !== 'QYK' ? this.options = [{ value: '1', label: '每日还款1笔' }, { value: '2', label: '每日还款2笔' }, { value: '3', label: '每日还款3笔' }] : this.options = [{ value: '1', label: '每日还款1笔' }, { value: '2', label: '每日还款2笔' }, { value: '3', label: '每日还款3笔' }, { value: '4', label: '每日还款4笔' }, { value: '5', label: '每日还款5笔' }, { value: '6', label: '每日还款6笔' }, { value: '7', label: '每日还款7笔' }, { value: '8', label: '每日还款8笔' }, { value: '9', label: '每日还款9笔' }, { value: '10', label: '每日还款10笔' }]
+      if (this.jshk) {
+        this.$set(this,'options',[{ value: '1', label: '每日还款1笔' }, { value: '2', label: '每日还款2笔' }, { value: '3', label: '每日还款3笔' }, { value: '4', label: '每日还款4笔' }, { value: '5', label: '每日还款5笔' }, { value: '6', label: '每日还款6笔' }, { value: '7', label: '每日还款7笔' }, { value: '8', label: '每日还款8笔' }, { value: '9', label: '每日还款9笔' }, { value: '10', label: '每日还款10笔' }])
+      }
       if (this.usermerchantNo) {
         this.merchantNo = this.usermerchantNo
       }
@@ -312,13 +317,17 @@ export default {
     this.cardList = JSON.parse(this.$route.query.item)
     this.usermerchantNo = this.$route.query.merchantNo
     this.lazyPeople = this.$route.query.lazyPeople
+    this.jshk = this.$route.query.jshk
     this.multi = this.$route.query.multi
     this.checkList = this.$route.query.checkList
     if (this.usermerchantNo) {
       this.merchantNo = this.usermerchantNo
     }
     this.tong = this.$route.query.tong
-    this.tong !== 'QYK' ? this.options = [{ value: '1', label: '每日还款1笔' }, { value: '2', label: '每日还款2笔' }, { value: '3', label: '每日还款3笔' }] : this.options = [{ value: '1', label: '每日还款1笔' }, { value: '2', label: '每日还款2笔' }, { value: '3', label: '每日还款3笔' }, { value: '4', label: '每日还款4笔' }, { value: '5', label: '每日还款5笔' }]
+    this.tong !== 'QYK' ? this.options = [{ value: '1', label: '每日还款1笔' }, { value: '2', label: '每日还款2笔' }, { value: '3', label: '每日还款3笔' }] : this.options = [{ value: '1', label: '每日还款1笔' }, { value: '2', label: '每日还款2笔' }, { value: '3', label: '每日还款3笔' }, { value: '4', label: '每日还款4笔' }, { value: '5', label: '每日还款5笔' }, { value: '6', label: '每日还款6笔' }, { value: '7', label: '每日还款7笔' }, { value: '8', label: '每日还款8笔' }, { value: '9', label: '每日还款9笔' }, { value: '10', label: '每日还款10笔' }]
+    if (this.jshk) {
+      this.$set(this,'options',[{ value: '1', label: '每日还款1笔' }, { value: '2', label: '每日还款2笔' }, { value: '3', label: '每日还款3笔' }, { value: '4', label: '每日还款4笔' }, { value: '5', label: '每日还款5笔' }, { value: '6', label: '每日还款6笔' }, { value: '7', label: '每日还款7笔' }, { value: '8', label: '每日还款8笔' }, { value: '9', label: '每日还款9笔' }, { value: '10', label: '每日还款10笔' }])
+    }
     if (this.tong === 'QYK') {
       this.newem = this.$stact.state.newem
     } else {

@@ -5,6 +5,8 @@ module.exports = {
     // outputDir: 在npm run build时 生成文件的目录 type:string, default:'dist'
     outputDir: 'cyjf',
     indexPath:'cyjf.html',
+    //关闭esLint
+    lintOnSave: false,
     publicPath:process.env.NODE_ENV === 'production'? './': '/',
     productionSourceMap: false,
     // pages:{ type:Object,Default:undfind } 

@@ -72,6 +72,7 @@
           <div><el-button v-if="showLogo['10P']" type="primary" @click='toAisle(3)'>{{showLogo['10P']}}</el-button></div>
           <div><el-button v-if="showLogo['10O']" type="primary" @click='toAisle(2)'>{{showLogo['10O']}}</el-button></div>
           <div><el-button v-if="showLogo['10Q']" type="primary" @click='toAisle(4)'>{{showLogo['10Q']}}</el-button></div>
+          <div><el-button type="primary" @click='toAisle(5)'>极速空卡</el-button></div>
         </div>
       </div>
     </el-dialog>
@@ -165,6 +166,9 @@ export default {
             break
           case 4:
             vm.$router.push({ name: 'aisle', query: { item: JSON.stringify(vm.item), aisle: 'YK', merchantNo: vm.usermerchantNo, multi: true } })
+            break
+          case 5:
+            vm.$router.push({ name: 'aisle', query: { item: JSON.stringify(vm.item), aisle: 'YK', merchantNo: vm.usermerchantNo, jshk: true } })
             break
         }
       } else {

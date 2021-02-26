@@ -147,7 +147,7 @@ export default {
       vm.cardMore.map((x, i) => {
         if (x.type.toString() === acqcode.toString()) {
           if (x.status === '开通') {
-            vm.$router.push({ name: 'make', query: { acqcode: acqcode, rate: rate, item: vm.$route.query.item, tong: aisle, merchantNo: vm.usermerchantNo, lazyPeople: vm.$route.query.lazyPeople } })
+            vm.$router.push({ name: 'make', query: { acqcode: acqcode, rate: rate, item: vm.$route.query.item, tong: aisle, merchantNo: vm.usermerchantNo, lazyPeople: vm.$route.query.lazyPeople, jshk: vm.$route.query.jshk } })
           } else {
             vm.$router.push({ name: 'tiedcard', query: { item: JSON.stringify(vm.bank), code: x.type, category: x.category, merchantNo: vm.usermerchantNo, merchantId: vm.merchantId } })
           }

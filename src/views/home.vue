@@ -407,9 +407,9 @@ export default {
     },
     toInter () {
       let vm = this
-      if (Number(vm.level) < 4) {
+      if (Number(vm.level) < 2) {
         vm.$message({
-          message: `${vm.$stact.state.level[3]}以上用户才可使用`,
+          message: `${vm.$stact.state.level[1]}以上用户才可使用`,
           center: true,
           offset: 30,
           duration: 2500,
