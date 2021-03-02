@@ -33,7 +33,7 @@
                     <p>{{item.LIMIT_MONEY}}</p>
                     <p>额度</p>
                 </div>
-                <div @click='toNext(item)' class='garyChoose whiteColor smallFont'>
+                <div @click='openselect(item)' class='garyChoose whiteColor smallFont'>
                     <img src='../../assets/repay/setcard.png' class='immediately'/>
                 </div>
             </div>
@@ -44,6 +44,25 @@
           </router-link>
         </div>
     </div>
+    <el-dialog
+      :visible.sync="centerDialogVisible"
+      width="13.2rem"
+      :show-close='false'
+      :before-close='rewardShow'
+      class='popup'
+      center>
+      <div>
+        <div class='popupTitle'>请选择还款方式</div>
+        <div class='popupContent'></div>
+      </div>
+      <div slot="footer" class="dialog-footer">
+        <div>
+          <div><el-button type="primary" @click='toNext("YK","zn")'>智能还款</el-button></div>
+          <div><el-button type="primary" @click='toNext("YK","js")'>极速空卡</el-button></div>
+          <div><el-button type="primary" @click='toNext("QYK","kk")'>空卡还款</el-button></div>
+        </div>
+      </div>
+    </el-dialog>
     <div class='bottomLong' element-loading-background="rgba(0, 0, 0, 0.7)" v-loading.fullscreen.lock='fullscreenLoading'></div>
   </div>
 </template>
@@ -56,7 +75,9 @@ export default {
       agentNo: '',
       merchantNo: '',
       cardList: [],
+      showLogo: {},
       clearsettimeout: null,
+      centerDialogVisible: false,
       banks: {
         313003: 'bj',
         303: 'gd',
@@ -79,7 +100,8 @@ export default {
       now: -1,
       usermerchantNo: '',
       fullscreenLoading: false,
-      type: '0' // 这是判断是不是中介用户登陆进来的,0 是根据账户查找卡片 1是根据中介查找全部卡片
+      type: '0', // 这是判断是不是中介用户登陆进来的,0 是根据账户查找卡片 1是根据中介查找全部卡片
+      carditem: {}
     }
   },
   created () {
@@ -88,13 +110,23 @@ export default {
     this.usermerchantNo = this.$route.query.merchantNo
     this.merchantId = this.$route.query.merchantId
     this.type = this.$route.query.type
+    // this.message()
     this.list()
   },
   methods: {
-    toNext (item) {
+    rewardShow () {
+      this.centerDialogVisible = false
+    },
+    openselect(item) {
+      console.log(item)
+      this.carditem = item
+      this.centerDialogVisible = true
+    },
+    toNext (aisle,type) {
       let vm = this
-      if (item.plancount <= 0) {
-        this.$router.push({ name: 'aisle', query: { item: JSON.stringify(item), aisle: 'YK', merchantNo: vm.usermerchantNo, merchantId: vm.merchantId } })
+      this.centerDialogVisible = false
+      if (vm.carditem.plancount <= 0) {
+        this.$router.push({ name: 'aisle', query: { item: JSON.stringify(vm.carditem), aisle: aisle, merchantNo: vm.usermerchantNo, merchantId: vm.merchantId,plantype: type,jshk: (type == 'js' ? true : false) } })
       } else {
         vm.$message({
           type: 'warning',

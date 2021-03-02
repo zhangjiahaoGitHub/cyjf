@@ -59,7 +59,8 @@ export default {
       fullscreenLoading: false,
       multi: false,
       checked: false,
-      checkList: []
+      checkList: [],
+      plantype: ''
     }
   },
   created () {
@@ -74,6 +75,10 @@ export default {
     if (this.usermerchantNo) {
       this.merchantNo = this.usermerchantNo
     }
+    if(this.$route.query.plantype) {
+      this.plantype = this.$route.query.plantype
+    }
+    console.log(this.plantype)
     console.log(this.$route.query.item)
     this.merchantId = this.$route.query.merchantId
     this.multi = this.$route.query.multi
@@ -92,6 +97,7 @@ export default {
   },
   methods: {
     list () {
+      console.log(this.ykdhFlag)
       let vm = this
       let parmas = {
         '0': '0700',
@@ -174,7 +180,7 @@ export default {
       vm.cardMore.map((x, i) => {
         if (x.type.toString() === acqcode.toString()) {
           if (x.status === '开通') {
-            vm.$router.push({ name: 'ykdhMake', query: { acqcode: acqcode, rate: rate, item: vm.$route.query.item, tong: aisle } })
+            vm.$router.push({ name: 'ykdhMake', query: { acqcode: acqcode, rate: rate, item: vm.$route.query.item, tong: aisle,plantype: vm.plantype } })
           } else {
             vm.$router.push({ name: 'tiedcard', query: { item: JSON.stringify(vm.bank), code: x.type, category: x.category, merchantId: vm.merchantId } })
           }

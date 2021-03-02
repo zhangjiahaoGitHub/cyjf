@@ -390,6 +390,33 @@ const routes = [
     component: (resolve : any) => require(['../views/my/intermediaryagency.vue'], resolve)
   },
   {
+    path: '/deductionrecord',
+    name: 'deductionrecord',
+    meta: {
+      title: '扣费记录',
+      left: true
+    },
+    component: (resolve : any) => require(['../views/emptybond/deductionrecord.vue'], resolve)
+  },
+  {
+    path: '/withdrawbond',
+    name: 'withdrawbond',
+    meta: {
+      title: '我要提现',
+      left: true
+    },
+    component: (resolve : any) => require(['../views/emptybond/withdrawbond.vue'], resolve)
+  },
+  {
+    path: '/wanttorecharge',
+    name: 'wanttorecharge',
+    meta: {
+      title: '我要充值',
+      left: true
+    },
+    component: (resolve : any) => require(['../views/emptybond/wanttorecharge.vue'], resolve)
+  },
+  {
     path: '/emptyrepayment',
     name: 'emptyrepayment',
     meta: {

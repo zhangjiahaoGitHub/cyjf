@@ -188,6 +188,7 @@ export default {
       showCalc: 0,
       value: '3',
       valuex: '1',
+      plantype: '',
       options: [{
         value: '1',
         label: '每日还款一笔'
@@ -304,6 +305,7 @@ export default {
     this.version = this.$stact.state.version
     this.agentNo = this.$stact.state.agentNo
     this.cardList = JSON.parse(this.$route.query.item)
+    this.plantype = this.$route.query.plantype
     this.merchantNo = JSON.parse(this.$stact.state.token)[0].merchantNo
     this.usermerchantNo = ''
     this.usermerchantNo = this.$route.query.merchantNo
@@ -311,6 +313,9 @@ export default {
       this.merchantNo = this.usermerchantNo
     }
     this.tong = this.$route.query.tong
+    if (this.plantype == 'js') {
+      this.$set(this,'options',[{ value: '1', label: '每日还款1笔' }, { value: '2', label: '每日还款2笔' }, { value: '3', label: '每日还款3笔' }, { value: '4', label: '每日还款4笔' }, { value: '5', label: '每日还款5笔' }, { value: '6', label: '每日还款6笔' }, { value: '7', label: '每日还款7笔' }, { value: '8', label: '每日还款8笔' }, { value: '9', label: '每日还款9笔' }, { value: '10', label: '每日还款10笔' }])
+    }
     console.log(this.cardList)
     this.city(0)
     this.list()

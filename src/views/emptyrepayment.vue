@@ -1,6 +1,10 @@
 <template>
   <div>
     <div style='height:1px'></div>
+    <div class="emptybond" @click="todeductionrecord">
+      <div>个人空卡保证金</div>
+      <div>剩余：1000元 <i class="el-icon-arrow-right"></i></div>
+    </div>
     <div>
         <div class='bankgroud' :class="index === now ?'': 'overflow'" @click='showOver(index)' v-for='(item, index) in cardList' :key='index'>
             <div class='allFlex'>
@@ -97,6 +101,9 @@ export default {
     this.message()
   },
   methods: {
+    todeductionrecord() {
+      this.$router.push({name: 'deductionrecord'})
+    },
     list () {
       let vm = this
       let parmas = {
