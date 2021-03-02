@@ -99,6 +99,7 @@ export default {
       first: 0,
       loading: true,
       multi: false,
+      zjHk: false,
       yk: {
         'sale': '消费',
         'payment': '还款 '
@@ -140,6 +141,9 @@ export default {
     this.tong = this.$route.query.tong
     this.multi = this.$route.query.multi
     this.usermerchantNo = this.$route.query.merchantNo
+    if (this.usermerchantNo) {
+      this.zjHk = true
+    }
     new Promise((resolve, reject) => {
       this.planItem.map((x, i) => {
         this.cityList.push({
@@ -299,6 +303,9 @@ export default {
         '57': JSON.stringify(vm.planItem),
         '59': vm.version
       }
+      if (this.zjHk) {
+        parmas['46'] = this.$route.query.rate
+      }
       let url = vm.$mdata.mdGet(parmas)
       vm.$http.post('request.app', url)
         .then(res => {
@@ -371,6 +378,9 @@ export default {
         '44': vm.$stact.state.newem ? vm.$stact.state.newem : '',
         '57': JSON.stringify(vm.planItem),
         '59': vm.version
+      }
+      if (this.zjHk) {
+        parmas['46'] = this.$route.query.rate
       }
       let url = vm.$mdata.mdGet(parmas)
       vm.fullscreenLoading = true

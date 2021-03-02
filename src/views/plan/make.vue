@@ -40,6 +40,12 @@
           <div class='gary makePadding'>
             注：还款金额不能低于500,不能超过{{tong !== 'QYK' ? '200000': '100000'}}
           </div>
+          <div v-if="zjHk" class='loginInput regInput border noMargin' style='width: 100%'>
+            <input type="text" placeholder='请输入使用费率(%)' v-model='fl' @input='IsMoney(money, 1)'/>
+          </div>
+          <div v-if="zjHk" class='gary makePadding'>
+            注：使用费率最低不低于{{rate}},最高不超过3。
+          </div>
           <div class='loginInput regInput border' style='width: 100%' v-if='lazyPeople'>
             <input type="text" placeholder='请输入预留金额' v-model='lostMoney' @input='IsMoney(lostMoney, 2)'/>
           </div>
@@ -206,6 +212,10 @@ export default {
       calcList: [],
       dateList: [],
       fullscreenLoading: false,
+      // 是否是中介空卡还款
+      zjHk: false,
+      fl: '',
+      rate: false,
       future: '',
       centerDialogVisible: false,
       refer: 0,
@@ -238,6 +248,7 @@ export default {
       }
       this.lazyPeople = this.$route.query.lazyPeople
       this.jshk = this.$route.query.jshk
+      this.rate = this.$route.query.rate
       this.checkList = this.$route.query.checkList
       this.merchantNo = JSON.parse(this.$stact.state.token)[0].merchantNo
       this.usermerchantNo = ''
@@ -249,6 +260,7 @@ export default {
       }
       if (this.usermerchantNo) {
         this.merchantNo = this.usermerchantNo
+        this.zjHk=true
       }
       if (this.tong === 'QYK') {
         this.newem = this.$stact.state.newem
@@ -317,13 +329,15 @@ export default {
     this.cardList = JSON.parse(this.$route.query.item)
     this.usermerchantNo = this.$route.query.merchantNo
     this.lazyPeople = this.$route.query.lazyPeople
+    this.rate = this.$route.query.rate
     this.jshk = this.$route.query.jshk
     this.multi = this.$route.query.multi
     this.checkList = this.$route.query.checkList
+    this.tong = this.$route.query.tong
     if (this.usermerchantNo) {
       this.merchantNo = this.usermerchantNo
+      this.zjHk=true
     }
-    this.tong = this.$route.query.tong
     this.tong !== 'QYK' ? this.options = [{ value: '1', label: '每日还款1笔' }, { value: '2', label: '每日还款2笔' }, { value: '3', label: '每日还款3笔' }] : this.options = [{ value: '1', label: '每日还款1笔' }, { value: '2', label: '每日还款2笔' }, { value: '3', label: '每日还款3笔' }, { value: '4', label: '每日还款4笔' }, { value: '5', label: '每日还款5笔' }, { value: '6', label: '每日还款6笔' }, { value: '7', label: '每日还款7笔' }, { value: '8', label: '每日还款8笔' }, { value: '9', label: '每日还款9笔' }, { value: '10', label: '每日还款10笔' }]
     if (this.jshk) {
       this.$set(this,'options',[{ value: '1', label: '每日还款1笔' }, { value: '2', label: '每日还款2笔' }, { value: '3', label: '每日还款3笔' }, { value: '4', label: '每日还款4笔' }, { value: '5', label: '每日还款5笔' }, { value: '6', label: '每日还款6笔' }, { value: '7', label: '每日还款7笔' }, { value: '8', label: '每日还款8笔' }, { value: '9', label: '每日还款9笔' }, { value: '10', label: '每日还款10笔' }])
@@ -510,6 +524,7 @@ export default {
         '42': vm.merchantNo,
         '43': vm.multi ? vm.checkList : vm.$route.query.acqcode,
         '44': vm.multi ? '10B' : '',
+        '46': vm.fl,
         '59': vm.version
       }
       let url = vm.$utils.queryParams(vm.$mdata.mdGet(parmas))
@@ -555,6 +570,7 @@ export default {
         '42': vm.merchantNo,
         '43': vm.$route.query.acqcode,
         '44': vm.$stact.state.newem ? vm.$stact.state.newem : '',
+        '46': vm.fl,
         '59': vm.version
       }
       let url = vm.$utils.queryParams(vm.$mdata.mdGet(parmas))
@@ -594,6 +610,18 @@ export default {
           type: 'warning'
         })
         return
+      }
+      if (vm.zjHk) {
+        if (this.fl<this.rate || this.fl>3) {
+          vm.$message({
+            message: `使用费率最低不低于${this.rate}，最高不超过3`,
+            center: true,
+            offset: 30,
+            duration: 2500,
+            type: 'warning'
+          })
+          return
+        }
       }
       if (!(Number(vm.money) <= 200000 && Number(vm.money) >= 500)) {
         vm.$message({
@@ -722,6 +750,18 @@ export default {
           type: 'warning'
         })
         return
+      }
+      if (vm.zjHk) {
+        if (this.fl<this.rate || this.fl>3) {
+          vm.$message({
+            message: `使用费率最低不低于${this.rate}，最高不超过3`,
+            center: true,
+            offset: 30,
+            duration: 2500,
+            type: 'warning'
+          })
+          return
+        }
       }
       if (!(Number(vm.money) <= 100000 && Number(vm.money) >= 500)) {
         vm.$message({

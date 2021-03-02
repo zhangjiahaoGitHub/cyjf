@@ -127,6 +127,7 @@ export default {
       shou: 0,
       cityList: [],
       lazyPeople: false,
+      zjHk: false,
       multi: false
     }
   },
@@ -153,6 +154,7 @@ export default {
     this.merchantList()
     if (this.usermerchantNo) {
       this.merchantNo = this.usermerchantNo
+      this.zjHk = true
     }
   },
   mounted () {
@@ -215,6 +217,9 @@ export default {
         '57': JSON.stringify(vm.planItem),
         '59': vm.version
       }
+      if (this.zjHk) {
+        parmas['46'] = this.$route.query.rate
+      }
       let url = vm.$mdata.mdGet(parmas)
       vm.fullscreenLoading = true
       vm.$http.post('request.app', url)
@@ -266,6 +271,9 @@ export default {
         '44': vm.$stact.state.newem ? vm.$stact.state.newem : '',
         '57': JSON.stringify(vm.planItem),
         '59': vm.version
+      }
+      if (this.zjHk) {
+        parmas['46'] = this.$route.query.rate
       }
       let url = vm.$mdata.mdGet(parmas)
       vm.fullscreenLoading = true
