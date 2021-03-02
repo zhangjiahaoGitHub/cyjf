@@ -1,7 +1,7 @@
 <template>
   <div>
     <div style='height:1px'></div>
-    <div class="emptybond" @click="todeductionrecord">
+    <div v-show="false" class="emptybond" @click="todeductionrecord">
       <div>个人空卡保证金</div>
       <div>剩余：1000元 <i class="el-icon-arrow-right"></i></div>
     </div>
