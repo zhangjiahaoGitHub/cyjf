@@ -58,7 +58,7 @@
       <div slot="footer" class="dialog-footer">
         <div>
           <div><el-button type="primary" @click='toNext("YK","zn")'>智能还款</el-button></div>
-          <div><el-button type="primary" @click='toNext("YK","js")'>极速空卡</el-button></div>
+          <div><el-button type="primary" @click='toNext("YK","js")'>极速还款</el-button></div>
           <div><el-button type="primary" @click='toNext("QYK","kk")'>空卡还款</el-button></div>
         </div>
       </div>

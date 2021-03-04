@@ -191,7 +191,7 @@ export default {
     },
     toparticular (itema) {
       let vm = this
-      this.$router.push({ name: 'particular', query: { item: JSON.stringify(itema), cardList: JSON.stringify({ short_cn_name: itema.bank_name, BANK_ACCOUNT: itema.BANK_ACCOUNT }) } })
+      this.$router.push({ name: 'particular', query: { item: JSON.stringify(itema), cardList: JSON.stringify({ short_cn_name: itema.bank_name, BANK_ACCOUNT: itema.BANK_ACCOUNT }),iszj: 'zj' } })
     }
   },
   filters: {

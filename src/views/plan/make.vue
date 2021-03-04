@@ -511,6 +511,7 @@ export default {
       let parmas = {
         '0': '0700',
         '3': '193000',
+        '5': vm.jshk ? '1' : '',//判断是不是极速还款
         '7': vm.lazyPeople ? '' : vm.value,
         '8': vm.money,
         '9': vm.lazyPeople ? 0 : vm.valuex,

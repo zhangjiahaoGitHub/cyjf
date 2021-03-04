@@ -16,6 +16,14 @@
                 </span>
                 </div>
             </li>
+            <li class='allFlex justifyBetween flexPadding' v-if="$route.query.iszj == 'zj'">
+                <div>
+                  <span class='gary'>
+                      费率：
+                  </span>
+                  <span>{{Number(itemList.RATE) * 100}}%</span>
+                </div>
+            </li>
             <li class='allFlex justifyBetween flexPadding'>
                 <div>
                   <span class='gary'>
