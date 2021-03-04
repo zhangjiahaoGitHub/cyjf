@@ -22,8 +22,8 @@
             </div>
           </div>
         </div>
-        <p class="more-b " v-if="loading">加载中...</p>
-        <p class="more-b " v-if="!loading">没有更多了</p>
+        <p style="text-align:center" class="more-b " v-if="loading">加载中...</p>
+        <p style="text-align:center" class="more-b " v-if="!loading">没有更多了</p>
       </div>
     </div>
   </div>
